@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  comprehend-lambda-api-docker
+
+  Sample SAM Template for comprehend-lambda-api-docker
+
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  sentimentAnalysisFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      PackageType: Image
+      Events:
+        sentimentAnalysis:
+          Type: Api 
+          Properties:
+            Path: /sentiment
+            Method: post
+    Metadata:
+      DockerTag: python3.7-v1
+      DockerContext: ./src
+      Dockerfile: Dockerfile
+
+Outputs:
+  sentimentAnalysisApi:
+    Description: "API Gateway endpoint URL for Prod stage for sentimentAnalysisFunction function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/sentiment/"
+  sentimentAnalysisFunction:
+    Description: "sentimentAnalysisFunction Lambda Function ARN"
+    Value: !GetAtt sentimentAnalysisFunction.Arn
+  sentimentAnalysisFunctionIamRole:
+    Description: "Implicit IAM Role created for sentimentAnalysisFunction function"
+    Value: !GetAtt sentimentAnalysisFunctionRole.Arn
