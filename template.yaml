@@ -15,7 +15,7 @@ Resources:
     Properties:
       PackageType: Image
       Events:
-        sentimentAnalysis:
+        HttpPost:
           Type: Api 
           Properties:
             Path: /sentiment
