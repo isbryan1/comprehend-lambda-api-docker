@@ -3,7 +3,7 @@ version = 0.1
 [y.deploy]
 [y.deploy.parameters]
 stack_name = "sentimentAnalysisApi"
-s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-12tqthf45ildd"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-14hodxbinlbhf"
 s3_prefix = "sentimentAnalysisApi"
 region = "us-east-1"
 confirm_changeset = true
